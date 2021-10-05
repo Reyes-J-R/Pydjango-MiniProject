@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<title>RedShare | SIGNUP</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+
+{% endblock %}
+
+{% block main %}
+	<div class='form-container'>
+		<form action="signup" method="POST" id="form" autocomplete="off">
+			{% csrf_token %}
+			<label id="formheading">Register</label><br>
+			<label for='firstname'>First Name: </label>
+			<input type="text" name="firstname">
+			<br>
+			<label for='lastname'>Last Name: </label>
+			<input type="text" name="lastname"><br>
+			<label for="username">Username: </label>
+			<input type="text" name="username"><br>
+			<label for="password">Password: </label>
+			<input type="password" name="password" id="password-input"><br>
+			<span class='signup-frame'>
+				<input type="submit" value="Sign Up" class="submit">
+			</span>
+			<span class='signup-frame'>
+				<a href='/login' id='login-ask'>Already Have An Account?</a>
+			</span>
+			<div>
+				{% for message in messages %}
+					<p style="color:red;">{{ message }}</p>
+				{% endfor %}
+			</div>
+		</form>
+	</div>
+
+{% endblock %}
